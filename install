@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+if ! [[ -e ~/.emacs ]]; then
+    ln -s "$PWD/.emacs" ~/.emacs
+fi
+
+if ! [[ -e ~/.screenrc ]]; then
+    ln -s "$PWD/.screenrc" ~/.screenrc
+fi
+
+echo "export ALTERNATE_EDITOR=''" >> ~/.bashrc
+echo "export EDITOR='emacsclient -c'" >> ~/.bashrc
+echo "alias emacs='emacsclient -c'" >> ~/.bashrc
