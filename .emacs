@@ -35,7 +35,6 @@
     gitignore-mode
     expand-region
     smex
-    scala-mode2
     json-mode
     flycheck
     ggtags
