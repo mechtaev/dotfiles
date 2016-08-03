@@ -37,7 +37,6 @@
     smex
     json-mode
     flycheck
-    ggtags
     )
   "A list of packages to ensure are installed at launch.")
 
@@ -151,5 +150,13 @@
 
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key [(control h)] 'delete-backward-char)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; VC
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(remove-hook 'find-file-hooks 'vc-find-file-hook) ; otherwise very slow inside git repos
+
+
 
 (server-mode 1)
