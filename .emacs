@@ -158,5 +158,16 @@
 (remove-hook 'find-file-hooks 'vc-find-file-hook) ; otherwise very slow inside git repos
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; rtags
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (require 'rtags nil :noerror) ;; only run this if rtags is installed
+  (define-key c-mode-base-map (kbd "M-.")
+    (function rtags-find-symbol-at-point))
+  (define-key c-mode-base-map (kbd "M-,")
+    (function rtags-find-references-at-point))
+  (rtags-enable-standard-keybindings))
+
 
 (server-mode 1)
