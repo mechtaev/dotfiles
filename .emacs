@@ -25,15 +25,13 @@
 ;    jedi
 ;    jedi-direx
 ;    direx
-;    paredit
 ;    ess
 ;    geiser
-    haskell-mode
+;    haskell-mode
+;    tuareg
     markdown-mode
-    tuareg
     gitconfig-mode
     gitignore-mode
-    expand-region
     smex
     json-mode
     flycheck
@@ -157,6 +155,14 @@
 
 (remove-hook 'find-file-hooks 'vc-find-file-hook) ; otherwise very slow inside git repos
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Ido
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ido)
+(ido-mode t)
+(ido-everywhere t)
 
 
 (server-mode 1)
+(put 'upcase-region 'disabled nil)
