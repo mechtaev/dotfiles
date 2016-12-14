@@ -163,6 +163,17 @@
 (ido-mode t)
 (ido-everywhere t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; rtags
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (require 'rtags nil :noerror) ;; only run this if rtags is installed
+  (define-key c-mode-base-map (kbd "M-.")
+    (function rtags-find-symbol-at-point))
+  (define-key c-mode-base-map (kbd "M-,")
+    (function rtags-find-references-at-point))
+  (rtags-enable-standard-keybindings))
+
 
 (server-mode 1)
 (put 'upcase-region 'disabled nil)
