@@ -29,6 +29,7 @@
 ;    geiser
 ;    haskell-mode
 ;    tuareg
+    simplenote2
     markdown-mode
     gitconfig-mode
     gitignore-mode
@@ -162,6 +163,15 @@
 (require 'ido)
 (ido-mode t)
 (ido-everywhere t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Ido
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'simplenote2)
+(setq simplenote2-email "mechtaev@gmail.com")
+(setq simplenote2-password nil)
+(simplenote2-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; rtags
