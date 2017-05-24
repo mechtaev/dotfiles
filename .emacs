@@ -174,6 +174,14 @@
     (function rtags-find-references-at-point))
   (rtags-enable-standard-keybindings))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; EasyPG
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'epa-file)
+(epa-file-enable)
+
+
 
 (server-mode 1)
 (put 'upcase-region 'disabled nil)
