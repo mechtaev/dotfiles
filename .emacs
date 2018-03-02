@@ -89,6 +89,13 @@
 
 (setq uniquify-buffer-name-style 'post-forward)
 
+(global-set-key (kbd "C-x C-o") 'ff-find-other-file)
+
+(defun find-user-init-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
+  (find-file-other-window user-init-file))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Smex
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -180,7 +187,6 @@
 
 (require 'epa-file)
 (epa-file-enable)
-
 
 
 (server-mode 1)
