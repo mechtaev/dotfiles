@@ -1,28 +1,39 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(package-selected-packages
+   '(yaml-mode rust-mode ron-mode marginalia magit json-reformat json-mode gitignore-mode gitconfig-mode eglot dockerfile-mode))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
+
 ;;; Prevent Extraneous Tabs
 (setq-default indent-tabs-mode nil)
 
 (setq-default tab-width 2)
 (menu-bar-mode -1)
-(show-paren-mode 1)
-(column-number-mode t)
+(scroll-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(setq ring-bell-function 'ignore)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 (setq package-list
       '(markdown-mode
-	gitconfig-mode
-	gitignore-mode
-	json-mode
-	eglot
-	company
-	))
+	      gitconfig-mode
+	      gitignore-mode
+	      json-mode
+        json-reformat
+        rust-mode
+        dockerfile-mode
+        eglot
+        yaml-mode))
 
 ; fetch the list of packages available 
 (unless package-archive-contents
@@ -38,23 +49,27 @@
 (add-hook 'latex-mode-hook 'flyspell-mode)
 (add-hook 'latex-mode-hook 'flyspell-buffer)
 
-; VC
+;; VC
 
 ; may be very slow inside git repos
-; (remove-hook 'find-file-hooks 'vc-find-file-hook)
+(remove-hook 'find-file-hooks 'vc-find-file-hook)
 
-; Ido
+;; Prolog
 
-(require 'ido)
-(ido-mode t)
-(ido-everywhere t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(rust-mode company eglot json-mode gitignore-mode gitconfig-mode markdown-mode)))
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
+(setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+                                ("\\.dl$" . prolog-mode))
+                                auto-mode-alist))
+
+;; Don't kill buffers opened with client:
+(setq server-kill-new-buffers nil)
+
+;; eglot
+
+; disable annoying parts:
+(setq eglot-ignored-server-capabilites '(:documentHighlightProvider))
+(setq eldoc-echo-area-use-multiline-p nil) 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

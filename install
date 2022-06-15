@@ -11,5 +11,7 @@ if ! [[ -e ~/.screenrc ]]; then
 fi
 
 echo "export ALTERNATE_EDITOR=''" >> ~/.bashrc
-echo "export EDITOR='emacsclient -c'" >> ~/.bashrc
-echo "alias emacs='emacsclient -c'" >> ~/.bashrc
+echo "export EDITOR='emacsclient -c -nw'" >> ~/.bashrc
+echo "alias emacs='emacsclient -c -nw'" >> ~/.bashrc
+echo "export FZF_DEFAULT_OPTS='--height 100% --layout=reverse'" >> ~/.bashrc
+echo "[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash"  >> ~/.bashrc
