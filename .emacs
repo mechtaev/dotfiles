@@ -11,14 +11,14 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(package-selected-packages
-   '(gptel typescript-mode xclip json-reformat dockerfile-mode use-package json-mode pyvenv rust-mode markdown-mode yaml-mode))
+   '(xclip gptel markdown-mode json-mode json-reformat rust-mode yaml-mode dockerfile-mode))
  '(tool-bar-mode nil))
 
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+;; (scroll-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -28,12 +28,14 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-(use-package dockerfile-mode)
-(use-package yaml-mode)
-(use-package rust-mode)
-(use-package json-reformat)
-(use-package json-mode)
-(use-package markdown-mode)
+(use-package dockerfile-mode :ensure t)
+(use-package yaml-mode :ensure t)
+(use-package rust-mode :ensure t)
+(use-package json-reformat :ensure t)
+(use-package json-mode :ensure t)
+(use-package markdown-mode :ensure t)
+(use-package gptel :ensure t)
+(use-package xclip :ensure t)
 
 ; Latex
 (add-hook 'latex-mode-hook 'flyspell-mode)
@@ -68,6 +70,4 @@
 ;; ChatGPT
 
 (setq gptel-api-key (getenv "OPENAI_API_KEY"))
-
-(use-package gptel)
 (global-set-key (kbd "C-c C-g") 'gptel-send)
