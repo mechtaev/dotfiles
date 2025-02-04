@@ -11,7 +11,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(package-selected-packages
-   '(xclip gptel markdown-mode json-mode json-reformat rust-mode yaml-mode dockerfile-mode))
+   '(flymake-ruff zig-mode imenu-list magit direx xclip markdown-mode json-mode json-reformat rust-mode yaml-mode dockerfile-mode))
  '(tool-bar-mode nil))
 
 
@@ -23,6 +23,7 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (setq ring-bell-function 'ignore)
+(setq-default show-trailing-whitespace t)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -34,7 +35,6 @@
 (use-package json-reformat :ensure t)
 (use-package json-mode :ensure t)
 (use-package markdown-mode :ensure t)
-(use-package gptel :ensure t)
 (use-package xclip :ensure t)
 
 ; Latex
@@ -62,12 +62,25 @@
 (setq eglot-ignored-server-capabilites '(:documentHighlightProvider))
 (setq eldoc-echo-area-use-multiline-p nil)
 
-(setq initial-major-mode 'fundamental-mode)
-(setq initial-scratch-message nil)
+;; Crazy shortcuts I have to remembers:
+;; C-h . - for documentation
+;; M-. M-, - find identifier, go back
+;; C-M-i - completion
+
+(use-package flymake-ruff
+  :ensure t
+  :hook (eglot-managed-mode . flymake-ruff-load))
+
+;; clipboard:
 
 (xclip-mode 1)
 
-;; ChatGPT
+;; Direx
 
-(setq gptel-api-key (getenv "OPENAI_API_KEY"))
-(global-set-key (kbd "C-c C-g") 'gptel-send)
+(require 'direx)
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+
+;; other
+
+(setq initial-major-mode 'fundamental-mode)
+(setq initial-scratch-message nil)
